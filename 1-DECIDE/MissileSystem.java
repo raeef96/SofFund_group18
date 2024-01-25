@@ -1,52 +1,23 @@
 public class MissileSystem{
 
     /* CONSTANTS */
-    public static double PI = Math.PI;
-    public static int NUMPOINTS;
+    public double PI = Math.PI;
+    public int NUMPOINTS;
     public enum Connectors {NOTUSED , ORR , ANDD}
-    public static Point[] POINTS;
+    public Point[] POINTS;
 
-    public static int[][] LCM;
-    public static int[] PUV;
-
-    // parameters for the struct PARAMETERS
-    public double LENGTH1;
-    public double RADIUS1;
-    public double EPSILON;
-    public double AREA1;
-    public int Q_PTS;
-    public int QUADS;
-    public int DIST;
-    public int N_PTS;
-    public int K_PTS;
-    public int A_PTS;
-    public int B_PTS;
-    public int C_PTS;
-    public int D_PTS;
-    public int E_PTS;
-    public int F_PTS;
-    public int G_PTS;
-    public int LENGTH2;
-    public int RADIUS2;
-    public int AREA2;
+    public boolean[][] LCM;
+    public boolean[] PUV;
+    public Parameters PARAMETERS;
     
 
-    public class Point{
-        private int x;
-        private int y;
-        
-        public int getX(){
-            return x;
-        }
-        public int getY(){
-            return y;
-        }
-        public void setX(int x){
-            this.x = x;
-        }
-        public void setY(int y){
-            this.y = y;
-        }
+    /* Constructor */
+    public MissileSystem(int NUMPOINTS, Point[] POINTS, boolean[][] LCM, boolean[] PUV, Parameters PARAMETERS) {
+        this.NUMPOINTS = NUMPOINTS;
+        this.POINTS = POINTS;
+        this.LCM = LCM;
+        this.PUV = PUV;
+        this.PARAMETERS = PARAMETERS;
     }
 
 
@@ -69,17 +40,14 @@ public class MissileSystem{
         return false;
     }
 
+
     
-    /*  */
+    /* decide wether to launch the missiles */
     public void decide(){
         LAUNCH = true;
         /* write LAUNCH result to stdout */
     }
 
-    public static void main(String[] args){
-        //Read input data
-
-        
-    }
+    
 
 }
