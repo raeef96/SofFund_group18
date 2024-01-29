@@ -31,4 +31,8 @@ public class FUV {
     public boolean at(int i) {
         return this.fuv[i];
     }
+
+    public boolean[] get(){
+        return this.fuv
+    }
 }

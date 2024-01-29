@@ -32,4 +32,8 @@ public class PUM {
     public boolean at(int y, int x) {
         return this.pum[y][x];
     }
+
+    public boolean[][] get(){
+        return this.pum;
+    }
 }

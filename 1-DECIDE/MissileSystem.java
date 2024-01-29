@@ -20,13 +20,6 @@ public class MissileSystem{
         this.PARAMETERS = PARAMETERS;
     }
 
-
-    //Values to be calculated
-    public boolean[] CMV;
-    public boolean[][] PUM;
-    public boolean[] FUV;
-    public boolean LAUNCH = false;
-
     public boolean[] calculateCMV(){
 
         return false;
@@ -40,6 +33,11 @@ public class MissileSystem{
         return false;
     }
 
+    /*
+    * Makes the final decision on whether or not the missile should be launched based on the FUV
+    * @param the final unlocking vector 
+    * @return whether or not the missile should be launched
+    */
     public boolean launch(boolean[] fuv){
         for(boolean parameter : fuv){
             if(!parameter){
@@ -51,10 +49,16 @@ public class MissileSystem{
 
 
     
-    /* decide wether to launch the missiles */
-    public void decide(){
-        LAUNCH = true;
-        /* write LAUNCH result to stdout */
+    /*
+    * Decides whether or not the missile should be launched based on the input
+    * @return whether or not the missile should be launched
+    */
+    public boolean decide(){
+        boolean[] CMV = calculateCMV();
+        PUM pum = new PUM(LCM, CMV);
+
+        FUV fuv = new FUV(PUV, pum.get());
+        return launch(FUV);
     }
 
     
