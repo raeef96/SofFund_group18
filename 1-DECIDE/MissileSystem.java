@@ -58,7 +58,7 @@ public class MissileSystem{
         PUM pum = new PUM(LCM, CMV);
 
         FUV fuv = new FUV(PUV, pum.get());
-        return launch(FUV);
+        return launch(fuv.get());
     }
 
     
