@@ -1,4 +1,3 @@
-<<<<<<< HEAD:1-DECIDE/src/FUV.java
 package src;
 
 public class FUV {
@@ -34,7 +33,6 @@ public class FUV {
     public boolean at(int i) {
         return this.fuv[i];
     }
-=======
 public class FUV {
     private boolean[] fuv = new boolean[size];
     
@@ -72,5 +70,4 @@ public class FUV {
     public boolean[] get(){
         return this.fuv
     }
->>>>>>> main:1-DECIDE/FUV.java
 }
