@@ -1,3 +1,5 @@
+package src;
+
 public class Parameters {
 
     public double LENGTH1;
@@ -19,6 +21,28 @@ public class Parameters {
     public int LENGTH2;
     public int RADIUS2;
     public int AREA2;
+
+    public Parameters(){
+        LENGTH1 = 1;
+        RADIUS1 = 1;
+        EPSILON = 1;
+        AREA1 = 1;
+        Q_PTS = 2;
+        QUADS = 2;
+        DIST = 1;
+        N_PTS = 3;
+        K_PTS = 1;
+        A_PTS = 1;
+        B_PTS = 1;
+        C_PTS = 1;
+        D_PTS = 1;
+        E_PTS = 1;
+        F_PTS = 1;
+        G_PTS = 1;
+        LENGTH2 = 1;
+        RADIUS2 = 1;
+        AREA2 = 1;
+    }
     
     public Parameters(double LENGTH1, double RADIUS1, double EPSILON, double AREA1, int Q_PTS, int QUADS, int DIST, int N_PTS, int K_PTS, int A_PTS, int B_PTS, int C_PTS, int D_PTS, int E_PTS, int F_PTS, int G_PTS, int LENGTH2, int RADIUS2, int AREA2){
         this.LENGTH1 = LENGTH1;

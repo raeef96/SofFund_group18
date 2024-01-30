@@ -1,3 +1,4 @@
+package src;
 
 public class CMV {
     private int NUMPOINTS;
