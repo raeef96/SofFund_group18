@@ -40,6 +40,15 @@ public class MissileSystem{
         return false;
     }
 
+    public boolean launch(boolean[] fuv){
+        for(boolean parameter : fuv){
+            if(!parameter){
+                return false;
+            }
+        }
+        return true;
+    }
+
 
     
     /* decide wether to launch the missiles */
