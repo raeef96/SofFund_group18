@@ -22,18 +22,7 @@ public class MissileSystem{
         this.PARAMETERS = PARAMETERS;
     }
 
-    public boolean[] calculateCMV(){
 
-        return false;
-    }
-
-    public boolean[][] calculatePUM(){
-        return false;
-    }
-
-    public boolean[] calculateFUV(){
-        return false;
-    }
 
     /*
     * Makes the final decision on whether or not the missile should be launched based on the FUV

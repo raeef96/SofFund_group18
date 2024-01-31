@@ -1,13 +1,18 @@
 package test;
 
 import src.CMV;
+import src.PUM;
+import src.FUV;
 import src.Parameters;
 import src.Point;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class TestLIC {
+public class Tests {
+    /* 
+        Test all LIC conditions
+    */
 
     /* There exists no set of two consecutive data points
     that are a distance greater than the length LENGTH1 = 2 apart*/
@@ -30,9 +35,10 @@ public class TestLIC {
         Point p1 = new Point(1, 1);
         Point p2 = new Point(2, 2);
         Point p3 = new Point(10, 10);
+        Point p4 = new Point(11, 11);
         Parameters param = new Parameters();
         param.LENGTH1 = 2;
-        CMV cmv = new CMV(3, new Point[] { p1, p2, p3 }, param);
+        CMV cmv = new CMV(3, new Point[] { p1, p2, p3 , p4}, param);
         
         assertTrue(cmv.lic0());
     } 
@@ -156,4 +162,81 @@ public class TestLIC {
 
     } 
 
+    /*
+    * Test CalculateCMV
+    */
+
+
+    /*
+     * Tests for PUM
+     */
+
+    @Test
+    public void calculatePUMtest(){
+        //LCM & CMV needed
+        boolean[] cmv = new boolean[15];
+        cmv[1] = true; 
+        cmv[12] = true;
+
+        int[][] lcm = {
+            {0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {1, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        };
+
+        boolean[][] expected = new boolean[15][15];
+        expected[1][2] = true;
+        expected[2][1] = true;
+        expected[1][1] = true;
+        expected[1][0] = true;
+        expected[0][1] = true;
+        expected[12][12] = true;
+        expected[1][12] = true;
+        expected[12][1] = true;
+        assertArrayEquals(new PUM(lcm,cmv).get() , expected);
+    }
+
+
+    /*
+    * Tests for FUV
+    */
+    @Test
+    public void calculateFUVTest(){
+
+        /* Create a PUM (size 15x15) */
+        boolean[][] PUM = new boolean[15][15];
+        for (int index = 0; index < 15; index++){
+            PUM[2][index] = true;
+            PUM[4][index] = true;
+        }
+        PUM[4][14] = false;
+        
+        
+        /* Create a PUV (size 15) */
+        boolean[] PUV = {false, false, true, true, true, true, true, true, true, true, true, true, true, true, true};
+
+        /* FUV should look like this based on PUM and PUV */
+        boolean[] expectedFUV = {true, true, true, false, false, false, false, false, false, false, false, false, false, false, false};
+
+        FUV fuvObj = new FUV(PUV, PUM);
+        
+        assertArrayEquals(expectedFUV, fuvObj.get());
+    }
+
+
+    /*
+    * Tests for the entire program
+    */
 }
