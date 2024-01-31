@@ -247,18 +247,6 @@ public class CMV {
         return 0; // Default to quadrant I for points on axes
     }
 
-    private boolean inACircleOld(Point p1, Point p2, Point p3, double r) {
-        double a = Math.pow((p1.getX() - p2.getX()), 2) + Math.pow((p1.getY() - p2.getY()), 2);
-        double b = Math.pow((p2.getX() - p3.getX()), 2) + Math.pow((p2.getY() - p3.getY()), 2);
-        double c = Math.pow((p3.getX() - p1.getX()), 2) + Math.pow((p3.getY() - p1.getY()), 2);
-
-        if (a <= r * r && b <= r * r && c <= r * r) {
-            return true;
-        }
-
-        return false;
-    }
-
     public static boolean inACircle(Point p1, Point p2, Point p3, double r) {
         Point center = calcCenter(p1, p2, p3);
         double a = Math.pow((p1.getX() - center.getX()), 2) + Math.pow((p1.getY() - center.getY()), 2);
@@ -494,16 +482,4 @@ public class CMV {
         return false;
     }
 
-    public static void main(String[] args) {
-        Point p1 = new Point(1, 1);
-        Point p2 = new Point(3, 5);
-        Point p3 = new Point(2, 3);
-        // test cases for helper functions
-        assert inACircle(p1, p2, p3, 10) == true;
-        assert inACircle(p1, p2, p3, 1) == false;
-        assert calcAngle(p1, p2, p3) != Math.PI / 2;
-        assert getQuad(p1) == 0;
-
-        CMV cmv = new CMV(3, new Point[] { p1, p2, p3 }, new Parameters());
-    }
 }
