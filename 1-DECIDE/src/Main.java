@@ -11,22 +11,23 @@ public class Main {
 
     private static Parameters PARAMETERS = new Parameters(2.4,3.3,0.001,22.1,1,3,7,8,5,3,2,2,2,2,2,2,3,4,7);
 
-    private static boolean[][] LCM = {
-        {true, true, true, true, true, true, true, true, true, true,true, true, true, true, true},
-        {true, true, true, true, true, true, true, true, true, true,true, true, true, true, true},
-        {true, true, true, true, true, true, true, true, true, true,true, true, true, true, true},
-        {true, true, true, true, true, true, true, true, true, true,true, true, true, true, true},
-        {true, true, true, true, true, true, true, true, true, true,true, true, true, true, true},
-        {true, true, true, true, true, true, true, true, true, true,true, true, true, true, true},
-        {true, true, true, true, true, true, true, true, true, true,true, true, true, true, true},
-        {true, true, true, true, true, true, true, true, true, true,true, true, true, true, true},
-        {true, true, true, true, true, true, true, true, true, true,true, true, true, true, true},
-        {true, true, true, true, true, true, true, true, true, true,true, true, true, true, true},
-        {true, true, true, true, true, true, true, true, true, true,true, true, true, true, true},
-        {true, true, true, true, true, true, true, true, true, true,true, true, true, true, true},
-        {true, true, true, true, true, true, true, true, true, true,true, true, true, true, true},
-        {true, true, true, true, true, true, true, true, true, true,true, true, true, true, true},
-        {true, true, true, true, true, true, true, true, true, true,true, true, true, true, true},
+    // ANDD = 0, ORR = 1, NOTUSED = 2
+    private static int[][] LCM = {
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0},
     };
     private static boolean[] PUV = {true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,};
 

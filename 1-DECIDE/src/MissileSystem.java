@@ -8,13 +8,13 @@ public class MissileSystem{
     public enum Connectors {NOTUSED , ORR , ANDD}
     public Point[] POINTS;
 
-    public boolean[][] LCM;
+    public int[][] LCM;
     public boolean[] PUV;
     public Parameters PARAMETERS;
     
 
     /* Constructor */
-    public MissileSystem(int NUMPOINTS, Point[] POINTS, boolean[][] LCM, boolean[] PUV, Parameters PARAMETERS) {
+    public MissileSystem(int NUMPOINTS, Point[] POINTS, int[][] LCM, boolean[] PUV, Parameters PARAMETERS) {
         this.NUMPOINTS = NUMPOINTS;
         this.POINTS = POINTS;
         this.LCM = LCM;
