@@ -9,12 +9,13 @@ public class CMV {
     private boolean[] cmvArr;
     
 
-    public CMV(int NUMPOINTS, Point[] points, Parameters parameters, boolean[] cmvArr) {
+    public CMV(int NUMPOINTS, Point[] points, Parameters parameters) {
         this.points = points;
         this.parameters = parameters;
-        this.cmvArr = cmvArr;
-        
+        this.cmvArr = new boolean[15];
+    }
 
+    public boolean[] getCMV(){
         cmvArr[0] = lic0();
         cmvArr[1] = lic1();
         cmvArr[2] = lic2();
@@ -30,8 +31,8 @@ public class CMV {
         cmvArr[12] = lic12();
         cmvArr[13] = lic13();
         cmvArr[14] = lic14();
-        
 
+        return cmvArr;
     }
 
     public boolean lic0() {
@@ -505,7 +506,4 @@ public class CMV {
         return false;
     }
 
-    public boolean[] getCmv(){
-        return this.cmvArr;
-    }
 }
