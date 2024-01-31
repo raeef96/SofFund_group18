@@ -1,7 +1,7 @@
 package src;
 
 public class FUV {
-    private boolean[] fuv = new boolean[size];
+    private boolean[] fuv = new boolean[14];
     
     //Generates the Final Unlocking Vector
     public FUV(boolean[] PUV, boolean[][] PUM) {
@@ -35,6 +35,6 @@ public class FUV {
     }
 
     public boolean[] get(){
-        return this.fuv
+        return this.fuv;
     }
 }
