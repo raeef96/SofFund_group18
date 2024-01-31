@@ -1,19 +1,19 @@
 package src;
 
 public class FUV {
-    private boolean[] fuv = new boolean[14];
+    private boolean[] fuv = new boolean[15];
     
     //Generates the Final Unlocking Vector
     public FUV(boolean[] PUV, boolean[][] PUM) {
         boolean invalid_row = false;
         for(int i = 0; i < 15; i++) {
-            if(PUV[i] == false) {
+            if(!PUV[i]) {
                 fuv[i] = true;
             }
             //Checks if all values are true in row i of PUM
             else {
                 for(int j = 0; j < 15; j++) {
-                    if(PUM[i][j] == false) {
+                    if(!PUM[i][j]) {
                         invalid_row = true;
                         break;
                     }
