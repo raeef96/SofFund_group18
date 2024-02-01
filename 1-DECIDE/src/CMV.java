@@ -267,12 +267,10 @@ public class CMV {
             double nextX = points[j].getX();
             double nextY = points[j].getY();
             double distance = Math.sqrt(Math.pow((nextX - currX), 2) + Math.pow((nextY - currY), 2)); // calculate the distance between the two points
-            if (distance <= parameters.LENGTH1) { // if the distance is less than or equal to LENGTH1, return true
+            if (distance > parameters.LENGTH1) { // if the distance is greater than LENGTH1, return true
                 return true;
             }
-
         }
-
         return false; 
     }
 
@@ -293,17 +291,14 @@ public class CMV {
 
         if (parameters.A_PTS + parameters.B_PTS > (NUMPOINTS - 3))
             throw new IllegalArgumentException("A_PTS + B_PTS must be less than or equal to NUMPOINTS-3"); // throw an exception if A_PTS + B_PTS is greater than NUMPOINTS-3
-
         // this for loop gets 3 data points that are seperated by A_PTS and B_PTS
         for (int i = 0; i < NUMPOINTS - parameters.A_PTS - parameters.B_PTS - 2; i++) {
             Point p1 = points[i];
             Point p2 = points[i + parameters.A_PTS + 1];
             Point p3 = points[i + parameters.A_PTS + parameters.B_PTS + 2];
-
             if (!inACircle(p1, p2, p3, parameters.RADIUS1)) {
                 return true; // return true if the points are not in a circle
             }
-
         }
         return false;
     }
@@ -564,7 +559,7 @@ public class CMV {
         boolean isLessThanArea2 = false;
 
         // for loop that gets 3 data points that are seperated by E_PTS and F_PTS
-        for (int i = 0; i < NUMPOINTS - parameters.E_PTS - parameters.F_PTS - 1; i++) {
+        for (int i = 0; i < NUMPOINTS - parameters.E_PTS - parameters.F_PTS - 2; i++) {
 
             Point p1 = points[i];
             Point p2 = points[i + parameters.E_PTS + 1];
