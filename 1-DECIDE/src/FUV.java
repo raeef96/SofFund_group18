@@ -13,7 +13,7 @@ public class FUV {
             //Checks if all values are true in row i of PUM
             else {
                 for(int j = 0; j < 15; j++) {
-                    if(!PUM[i][j]) {
+                    if(!PUM[i][j] && i != j) {
                         invalid_row = true;
                         break;
                     }
