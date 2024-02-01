@@ -370,8 +370,57 @@ public class Tests {
     /* 1 ≤ K PTS ≤ (NUMPOINTS−2) */
 
 
+    /*
+    There exists no set of two data points,
+    (X[i],Y[i]) and (X[j],Y[j]), separated by exactly
+    G_PTS consecutive intervening points, such that X[j]- X[i] < 0.
+    (where i < j )
+    */
+    @Test
+    public void lic11Test_False() {
+        Point p1 = new Point(1, 3);
+        Point p2 = new Point(1, 5);
+        Point p3 = new Point(1, 4);
+        Point p4 = new Point(1, 1);
+        Parameters param = new Parameters();
+        param.G_PTS = 2;
+        CMV cmv = new CMV(4, new Point[] { p1, p2, p3, p4 }, param);
 
+        assertFalse(cmv.lic11());
+    }
 
+    /*
+    There exists at least one set of two data points,
+    (X[i],Y[i]) and (X[j],Y[j]), separated by exactly
+    G_PTS consecutive intervening points, such that X[j]- X[i] < 0.
+    (where i < j )
+    */
+    @Test
+    public void lic11Test_True() {
+        Point p1 = new Point(3, 3);
+        Point p2 = new Point(1, 5);
+        Point p3 = new Point(6, 4);
+        Point p4 = new Point(1, 1);
+        Parameters param = new Parameters();
+        param.G_PTS = 2;
+        CMV cmv = new CMV(4, new Point[] { p1, p2, p3, p4 }, param);
+
+        assertTrue(cmv.lic11());
+    }
+
+    /* Ensure that 1 <= G_PTS <= NUMPOINTS - 2 */
+    @Test
+    public void lic11Test_IllegalArgumentException() {
+        Point p1 = new Point(3, 3);
+        Point p2 = new Point(1, 5);
+        Point p3 = new Point(6, 4);
+        Point p4 = new Point(1, 1);
+        Parameters param = new Parameters();
+        param.G_PTS = 3;
+        CMV cmv = new CMV(4, new Point[] { p1, p2, p3, p4 }, param);
+
+        assertThrows(IllegalArgumentException.class, () -> {cmv.lic11();} );
+    }
 
 
     /*
