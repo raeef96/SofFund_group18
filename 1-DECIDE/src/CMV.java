@@ -334,8 +334,6 @@ public class CMV {
         if(area == 0) {
             return Math.max(Math.max(l1, l2), l3) / 2.0 <= r;
         }
-        System.out.println(l1 * l2 * l3);
-        System.out.println(area);
         return l1 * l2 * l3 / area <= r + double_precision;
     }
 
