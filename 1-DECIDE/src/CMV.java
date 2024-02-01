@@ -8,12 +8,37 @@ public class CMV {
     private Point[] points;
     private Parameters parameters;
     private static double PI = Math.PI;
+    // add a cmv boolean array of length 15
+    private boolean[] cmvArr;
+    
 
 
     // constructor with NUMPOINTS, points, and parameters
-    public CMV(int NUMPOINTS, Point[] points, Parameters parameters) {
+ 
+    public CMV(int NUMPOINTS, Point[] points, Parameters parameters, boolean[] cmvArr) {
+
         this.points = points;
         this.parameters = parameters;
+        this.cmvArr = cmvArr;
+        
+
+        cmvArr[0] = lic0();
+        cmvArr[1] = lic1();
+        cmvArr[2] = lic2();
+        cmvArr[3] = lic3();
+        cmvArr[4] = lic4();
+        cmvArr[5] = lic5();
+        cmvArr[6] = lic6();
+        cmvArr[7] = lic7();
+        cmvArr[8] = lic8();
+        cmvArr[9] = lic9();
+        cmvArr[10] = lic10();
+        cmvArr[11] = lic11();
+        cmvArr[12] = lic12();
+        cmvArr[13] = lic13();
+        cmvArr[14] = lic14();
+        
+
     }
 
     // boolean function that checks if condition 0 is met
@@ -528,4 +553,7 @@ public class CMV {
         return false;
     }
 
+    public boolean[] getCmv(){
+        return this.cmvArr;
+    }
 }
