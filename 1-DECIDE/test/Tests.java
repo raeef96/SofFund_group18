@@ -566,7 +566,7 @@ public class Tests {
         
         assertThrows(IllegalArgumentException.class, () -> {cmv.lic9();} );
     }
-
+  
     /*
     The condition (C_PTS + D_PTS <= (NUMPOINTS−3)) has to be fullfilled for LIC9
     */
@@ -919,6 +919,21 @@ public class Tests {
         CMV cmv = new CMV(5, new Point[] { p1, p2, p3, p4, p5 }, param);
 
         assertThrows(IllegalArgumentException.class, () -> {cmv.lic14();} );
+    }
+  
+    /*
+    * Tests so that an equilateral triangle with edge length equal to the radius does not fit in the circle.
+    */
+    @Test
+    public void testInACircleWithEquilaterTriangle(){
+        Point p1 = new Point(0, 0);
+        Point p2 = new Point(4, 0);
+        Point p3 = new Point(2,Math.sqrt(12)); 
+        double radius = 2;
+        Parameters param = new Parameters();
+        CMV cmv = new CMV(3, new Point[] { p1, p2, p3}, param);
+
+        assertFalse(cmv.inACircle(p1, p2, p3, radius));
     }
 
 

@@ -82,7 +82,7 @@ public class CMV {
             Point p3 = points[i + 2];
             
             //if the three points are in a circle with radius RADIUS1 return true
-            if (inACircle(p1, p2, p3, parameters.RADIUS1)) {
+            if (!inACircle(p1, p2, p3, parameters.RADIUS1)) {
                 return true;
             }
         }
@@ -321,22 +321,19 @@ public class CMV {
 
     // helper function that returns true if the points are in a circle with radius r
     public static boolean inACircle(Point p1, Point p2, Point p3, double r) {
-        Point center = calcCenter(p1, p2, p3); // calculate the center of the circle
-        double a = Math.pow((p1.getX() - center.getX()), 2) + Math.pow((p1.getY() - center.getY()), 2); 
-        double b = Math.pow((p2.getX() - center.getX()), 2) + Math.pow((p2.getY() - center.getY()), 2);
-        double c = Math.pow((p3.getX() - center.getX()), 2) + Math.pow((p3.getY() - center.getY()), 2);
+        // computes the distance between each pair of points
+        double l1 = Math.sqrt(Math.pow(p2.getX() - p1.getX(), 2) + Math.pow(p2.getY() - p1.getY(), 2));
+        double l2 = Math.sqrt(Math.pow(p3.getX() - p1.getX(), 2) + Math.pow(p3.getY() - p1.getY(), 2));
+        double l3 = Math.sqrt(Math.pow(p3.getX() - p2.getX(), 2) + Math.pow(p3.getY() - p2.getY(), 2));
+        
+        // area of the triangle
+        double area = Math.sqrt((l1 + l2 + l3) * (l2 + l3 - l1) * (l3 + l1 - l2) * (l1 + l2 - l3));
 
-        if (a <= r * r && b <= r * r && c <= r * r) {
-            return false; // return true if the points are in a circle with radius r
+        // compute minimum radius to cover the triangle and compare it to r
+        if(area == 0) {
+            return Math.max(Math.max(l1, l2), l3) / 2.0 <= r;
         }
-        return true;
-    }
-
-    // helper function that calculates the center of a circle with the three points
-    public static Point calcCenter(Point p1, Point p2, Point p3) {
-        double averageX = (p1.getX() + p2.getX() + p3.getX() )/ 3;
-        double averageY = (p1.getY() + p2.getY() + p3.getY() )/ 3;
-        return new Point(averageX, averageY);
+        return l1 * l2 * l3 / area <= r;
     }
 
     /*
@@ -521,7 +518,7 @@ public class CMV {
         boolean isInACircleRadius2 = false;
         
         // for loop that gets 3 data points that are seperated by A_PTS and B_PTS
-        for (int i = 0; i < NUMPOINTS - parameters.A_PTS - parameters.B_PTS - 1; i++) {
+        for (int i = 0; i < NUMPOINTS - parameters.A_PTS - parameters.B_PTS - 2; i++) {
 
             Point p1 = points[i];
             Point p2 = points[i + parameters.A_PTS + 1];
