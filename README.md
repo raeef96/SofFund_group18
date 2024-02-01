@@ -12,11 +12,6 @@ This project is based on the development of a function called DECIDE() as part o
 ## Installation & usage
 git clone [https://github.com/your-username/your-project-name.git](https://github.com/raeef96/SofFund_group18.git)
 
-Run program:
-- Insert parameter information in Main.java
-- Compile and run main 
-
-
 ## Essence
 The team is currently in the "In place" stage. The team is currently close to finishing the first assignment and have agreed upon several practices that is used by all members to complete their respective work. However, the team has agreed that there still is a lot of room for improvement to the methods and practices. For example, writing test cases when commiting new code. The team is planning on having a retrospective meeting after the assignment to gather concrete solutions to issues such as improved methods for reviewing pull requests. Some of the points in the checklist are not really relevant for this exercise, the points in state "Principles Established" that use the word stakeholders are not really relevant for this type of project since there is not really any external party that has an interest on the performance of this project. We assesed that we are in the state "In place" since the previus stages are completed. We have completed the "Principles Established" state since we have addressed the principles and constraints of way-of-working. The team has addressed the "Foundation Established" stage and decided the basic methods for working such as communication methods, meeting times and tools. In addition, the team has identified that there is a gap in testing knowledge. We have also started to use these practices and tools to start working and made significant progress in the first assignment. This leaves us at the state "In place" where the team is mainly waiting for the opportunity to gather our feedback and adapt the way-of-working for the next assignment. 
 
