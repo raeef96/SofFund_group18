@@ -41,20 +41,15 @@ public class MissileSystem{
 
     
     /*
-    * Decides whether or not the missile should be launched based on the input
+    * Decides if missile should be launched based on the input parameters, points, LCM and PUV.
     * @return whether or not the missile should be launched
     */
     public boolean decide(){
-        /*
-        boolean[] CMV = calculateCMV();
-        PUM pum = new PUM(LCM, CMV);
-
-        FUV fuv = new FUV(PUV, pum.get());
-        return launch(fuv.get());
-        */
-        return true;
+        boolean[] cmv = new CMV(POINTS.length, POINTS, PARAMETERS).getCMV();
+        boolean[][] pum = new PUM(LCM, cmv).get();
+        boolean[] fuv = new FUV(PUV, pum).get();
+        return launch(fuv);
     }
-
     
 
 }

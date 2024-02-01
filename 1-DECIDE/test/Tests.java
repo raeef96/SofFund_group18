@@ -3,8 +3,10 @@ package test;
 import src.CMV;
 import src.PUM;
 import src.FUV;
+import src.MissileSystem;
 import src.Parameters;
 import src.Point;
+import java.util.Random;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -1012,6 +1014,65 @@ public class Tests {
 
 
     /*
-    * Tests for the entire program
-    */
+     * Tests that the program decides to launch when all values in PUV is false
+     */
+    @Test
+    public void decideLaunchWhenPUVisFalse(){
+        Random rand = new Random();
+        // ANDD = 0, ORR = 1, NOTUSED = 2
+
+        //Randomize lcm
+        int[][] lcm = new int[15][15];
+        for(int i = 0 ; i < lcm.length ; i++){
+            for (int j = 0 ; j < lcm[0].length ; j++){
+                lcm[i][j] = rand.nextInt(3); //random value in range [0,2];;
+            }
+        }
+        
+        boolean[] puv = new boolean[15];
+        for(int i = 0 ; i < puv.length ; i++){
+            puv[i] = false;
+        }
+
+        int NUMPOINTS = 3;
+        
+        Point p1 = new Point(1, 1);
+        Point p2 = new Point(2, 5);
+        Point p3 = new Point(3, 1);
+        Point[] points = {p1, p2, p3};
+        Parameters parameters = new Parameters();
+
+        MissileSystem system = new MissileSystem(NUMPOINTS, points, lcm, puv, parameters);
+        assertTrue(system.decide());
+    }
+
+    /*
+     * Tests that the program decides to launch when all values in LCM is NOTUSED
+     */
+    @Test
+    public void decideLaunchWhenAllValuesInLCMisNOTUSED(){
+    Random rand = new Random(); 
+    // ANDD = 0, ORR = 1, NOTUSED = 2
+    int[][] lcm = new int[15][15];
+    for(int i = 0 ; i < lcm.length ; i++){
+        for (int j = 0 ; j < lcm[0].length ; j++){
+            lcm[i][j] = 2;
+        }
+    }
+    boolean[] puv = new boolean[15];
+    for(int i = 0 ; i < puv.length ; i++){
+        puv[i] = rand.nextBoolean();
+    }
+
+    int NUMPOINTS = 3;
+    
+    Point p1 = new Point(1, 1);
+    Point p2 = new Point(2, 5);
+    Point p3 = new Point(3, 1);
+    Point[] points = {p1, p2, p3};
+    Parameters parameters = new Parameters();
+
+    MissileSystem system = new MissileSystem(NUMPOINTS, points, lcm, puv, parameters);
+    assertTrue(system.decide());
+    }
 }
