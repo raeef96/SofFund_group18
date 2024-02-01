@@ -555,6 +555,72 @@ public class Tests {
         assertThrows(IllegalArgumentException.class, () -> {cmv.lic13();} );
     }
 
+    /*
+    There exists no set of three data points, separated by exactly E_PTS
+    and F_PTS consecutive intervening points, respectively, that are the vertices
+    of a triangle with area greater than AREA1. Inaddition, there exist no three data
+    points separated by exactly E_PTS and F_PTS consecutive intervening points,
+    respectively, that are the vertices of a triangle with area less than AREA2.
+    */
+    @Test
+    public void lic14Test_False() {
+        Point p1 = new Point(0, 0);
+        Point p2 = new Point(2, 2);
+        Point p3 = new Point(5, 10);
+        Point p4 = new Point(3, 3);
+        Point p5 = new Point(10,0);
+        Parameters param = new Parameters();
+        param.E_PTS = 1;
+        param.F_PTS = 1;
+        param.AREA1 = 10;
+        param.AREA2 = 40;
+        CMV cmv = new CMV(5, new Point[] { p1, p2, p3, p4, p5 }, param);
+
+        assertFalse(cmv.lic14());
+    }
+
+    /*
+    There exists at least one set of three data points, separated by exactly E_PTS
+    and F_PTS consecutive intervening points, respectively, that are the vertices
+    of a triangle with area greater than AREA1. Inaddition, there exist three data
+    points (which can be the same or different from the three data points just
+    mentioned) separated by exactly E_PTS and F_PTS consecutive intervening points,
+    respectively, that are the vertices of a triangle with area less than AREA2.
+    */
+    @Test
+    public void lic14Test_True() {
+        Point p1 = new Point(0, 0);
+        Point p2 = new Point(2, 2);
+        Point p3 = new Point(5, 10);
+        Point p4 = new Point(3, 3);
+        Point p5 = new Point(10,0);
+        Parameters param = new Parameters();
+        param.E_PTS = 1;
+        param.F_PTS = 1;
+        param.AREA1 = 10;
+        param.AREA2 = 100;
+        CMV cmv = new CMV(5, new Point[] { p1, p2, p3, p4, p5 }, param);
+
+        assertTrue(cmv.lic14());
+    }
+
+    /* Ensure that 0 <= AREA2 */
+    @Test
+    public void lic14Test_IllegalArgumentException() {
+        Point p1 = new Point(0, 0);
+        Point p2 = new Point(2, 2);
+        Point p3 = new Point(5, 10);
+        Point p4 = new Point(3, 3);
+        Point p5 = new Point(10,0);
+        Parameters param = new Parameters();
+        param.E_PTS = 1;
+        param.F_PTS = 1;
+        param.AREA1 = 10;
+        param.AREA2 = -100;
+        CMV cmv = new CMV(5, new Point[] { p1, p2, p3, p4, p5 }, param);
+
+        assertThrows(IllegalArgumentException.class, () -> {cmv.lic14();} );
+    }
 
 
     /*
