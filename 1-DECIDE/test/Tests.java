@@ -486,7 +486,7 @@ public class Tests {
 
     /*
     There exists no set of three data points, separated by exactly
-    A_PTS and B_PTS consecutive intervening points, respectively ,that
+    A_PTS and B_PTS consecutive intervening points, respectively, that
     cannot be contained within or on a circle of radius RADIUS1. In addition,
     there exists no set of three data points separated by exactly
     A_PTS and B_PTS consecutive intervening points, respectively, that can be
@@ -509,6 +509,53 @@ public class Tests {
 
         assertFalse(cmv.lic13());
     }
+
+    /*
+    There exists at least one set of three data points, separated by exactly
+    A_PTS and B_PTS consecutive intervening points, respectively, that
+    cannot be contained within or on a circle of radius RADIUS1. In addition,
+    there exists at least one set of three data points separated by exactly
+    A_PTS and B_PTS consecutive intervening points, respectively, that can be
+    contained in or on a circle of radius RADIUS2.
+    */
+    @Test
+    public void lic13Test_True() {
+        Point p1 = new Point(0, 0);
+        Point p2 = new Point(2, 0);
+        Point p3 = new Point(2, 2);
+        Point p4 = new Point(3, 1);
+        Point p5 = new Point(4, 4);
+        Point p6 = new Point(4, 0);
+        Parameters param = new Parameters();
+        param.A_PTS = 1;
+        param.B_PTS = 1;
+        param.RADIUS1 = 1;
+        param.RADIUS2 = 1;
+        CMV cmv = new CMV(6, new Point[] { p1, p2, p3, p4, p5, p6 }, param);
+
+        assertTrue(cmv.lic13());
+    }
+
+    /* Ensure 0 <= RADIUS2 */
+    @Test
+    public void lic13Test_IllegalArgumentException() {
+        Point p1 = new Point(1, 1);
+        Point p2 = new Point(2, 2);
+        Point p3 = new Point(2, 2);
+        Point p4 = new Point(3, 3);
+        Point p5 = new Point(3, 1);
+        Point p6 = new Point(3, 2);
+        Parameters param = new Parameters();
+        param.A_PTS = 1;
+        param.B_PTS = 1;
+        param.RADIUS1 = 1;
+        param.RADIUS2 = -2;
+        CMV cmv = new CMV(6, new Point[] { p1, p2, p3, p4, p5, p6 }, param);
+
+        assertThrows(IllegalArgumentException.class, () -> {cmv.lic13();} );
+    }
+
+
 
     /*
     * Test CalculateCMV
