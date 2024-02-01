@@ -45,11 +45,14 @@ public class MissileSystem{
     * @return whether or not the missile should be launched
     */
     public boolean decide(){
+        /*
         boolean[] CMV = calculateCMV();
         PUM pum = new PUM(LCM, CMV);
 
         FUV fuv = new FUV(PUV, pum.get());
         return launch(fuv.get());
+        */
+        return true;
     }
 
     

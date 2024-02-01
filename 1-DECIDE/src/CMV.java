@@ -12,12 +12,11 @@ public class CMV {
     private boolean[] cmvArr;
     
 
-
-    // constructor with NUMPOINTS, points, and parameters
- 
-    public CMV(int NUMPOINTS, Point[] points, Parameters parameters, boolean[] cmvArr) {
-
-
+    public CMV(int NUMPOINTS, Point[] points, Parameters parameters) {
+        if (NUMPOINTS != points.length)
+            throw new IllegalArgumentException("NUMPOINTS has to be equal to the length of points");
+        
+        this.NUMPOINTS = NUMPOINTS;
         this.points = points;
         this.parameters = parameters;
         this.cmvArr = new boolean[15];
@@ -54,8 +53,6 @@ public class CMV {
             double currY = points[index].getY();
             double nextX = points[index + 1].getX();
             double nextY = points[index + 1].getY();
-
-            // calculate the distance between the data points
             double distance = Math.sqrt(Math.pow((nextX - currX), 2) + Math.pow((nextY - currY), 2));
 
             // if the distance is greater than the length, return true
