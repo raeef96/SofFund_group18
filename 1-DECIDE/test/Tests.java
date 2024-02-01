@@ -356,22 +356,318 @@ public class Tests {
         assertThrows(IllegalArgumentException.class, () -> {cmv.lic6();} );
     }
 
-    
-
-
-
-
-    /* There exists at least one set of two data points separated by exactly K_PTS
+    /* 
+    There exists no set of two data points separated by exactly K_PTS
     consecutive intervening points that are a distance greater than the length, LENGTH1,
     apart. The condition is not met when NUMPOINTS < 3.
     */
+    @Test
+    public void lic7Test_False() {
+        Point p1 = new Point(1, 1);
+        Point p2 = new Point(2, 5);
+        Point p3 = new Point(2, 1);
+        Parameters param = new Parameters();
+        param.K_PTS = 1;
+        param.LENGTH1 = 10;
+        CMV cmv = new CMV(3, new Point[] { p1, p2, p3 }, param);
+        
+        assertFalse(cmv.lic7());
+    } 
+
+    /* 
+    There exists at least one set of two data points separated by exactly K_PTS
+    consecutive intervening points that are a distance greater than the length, LENGTH1,
+    apart. The condition is not met when NUMPOINTS < 3.
+    */
+    @Test
+    public void lic7Test_True() {
+        Point p1 = new Point(1, 1);
+        Point p2 = new Point(2, 5);
+        Point p3 = new Point(10, 1);
+        Parameters param = new Parameters();
+        param.K_PTS = 1;
+        param.LENGTH1 = 2;
+        CMV cmv = new CMV(3, new Point[] { p1, p2, p3 }, param);
+        
+        assertTrue(cmv.lic7());
+    } 
+
+    /* The condition (1 ≤ K_PTS ≤ (NUMPOINTS−2)) should be met for LIC7 */
+    @Test
+    public void lic7Test_IllegalArgumentException() {
+        Point p1 = new Point(1, 1);
+        Point p2 = new Point(2, 5);
+        Point p3 = new Point(2, 1);
+        Parameters param = new Parameters();
+        param.K_PTS = 10;
+        param.LENGTH1 = 10;
+        CMV cmv = new CMV(3, new Point[] { p1, p2, p3 }, param);
+        
+        assertThrows(IllegalArgumentException.class, () -> {cmv.lic7();} );
+    }
+
+    /* 
+    There exists no set of three data points separated by exactly
+    A_PTS and B_PTS consecutive intervening points, respectively, that cannot
+    be contained within or on a circle of radius RADIUS1. The condition is not
+    met when NUMPOINTS < 5.
+    */
+    @Test
+    public void lic8Test_False() {
+        Point p1 = new Point(1, 1);
+        Point p2 = new Point(10, 10);
+        Point p3 = new Point(2, 1);
+        Point p4 = new Point(10, 10);
+        Point p5 = new Point(10, 10);
+        Point p6 = new Point(3, 1);
+        Parameters param = new Parameters();
+        param.A_PTS = 1;
+        param.B_PTS = 2;
+        param.RADIUS1 = 10;
+        CMV cmv = new CMV(6, new Point[] { p1, p2, p3, p4, p5, p6 }, param);
+        
+        assertFalse(cmv.lic8());
+    } 
+
+    /* 
+    There exists at least one set of three data points separated by exactly
+    A_PTS and B_PTS consecutive intervening points, respectively, that cannot
+    be contained within or on a circle of radius RADIUS1. The condition is not
+    met when NUMPOINTS < 5.
+    */
+    @Test
+    public void lic8Test_True() {
+        Point p1 = new Point(1, 1);
+        Point p2 = new Point(10, 10);
+        Point p3 = new Point(10, 1);
+        Point p4 = new Point(10, 10);
+        Point p5 = new Point(10, 10);
+        Point p6 = new Point(20, 1);
+        Parameters param = new Parameters();
+        param.A_PTS = 1;
+        param.B_PTS = 2;
+        param.RADIUS1 = 1;
+        CMV cmv = new CMV(6, new Point[] { p1, p2, p3, p4, p5, p6 }, param);
+        
+        assertTrue(cmv.lic8());
+    } 
+
+    /* The condition (1 <= A_PTS, 1 <= B_PTS) should be met for LIC8 */
+    @Test
+    public void lic8Test_IllegalArgumentException1() {
+        Point p1 = new Point(1, 1);
+        Point p2 = new Point(10, 10);
+        Point p3 = new Point(1, 1);
+        Point p4 = new Point(10, 10);
+        Point p5 = new Point(10, 10);
+        Point p6 = new Point(1, 1);
+        Parameters param = new Parameters();
+        param.A_PTS = 0;
+        param.B_PTS = -1;
+        param.RADIUS1 = 1;
+        CMV cmv = new CMV(6, new Point[] { p1, p2, p3, p4, p5, p6 }, param);
+        
+        assertThrows(IllegalArgumentException.class, () -> {cmv.lic8();} );
+    }
+
     
+    /* The condition (A_PTS + B_PTS <= (NUMPOINTS−3)) should be met for LIC8 */
+    @Test
+    public void lic8Test_IllegalArgumentException2() {
+        Point p1 = new Point(1, 1);
+        Point p2 = new Point(10, 10);
+        Point p3 = new Point(1, 1);
+        Point p4 = new Point(10, 10);
+        Point p5 = new Point(10, 10);
+        Point p6 = new Point(1, 1);
+        Parameters param = new Parameters();
+        param.A_PTS = 2;
+        param.B_PTS = 2;
+        param.RADIUS1 = 1;
+        CMV cmv = new CMV(6, new Point[] { p1, p2, p3, p4, p5, p6 }, param);
+        
+        assertThrows(IllegalArgumentException.class, () -> {cmv.lic8();} );
+    }
 
-    /* 1 ≤ K PTS ≤ (NUMPOINTS−2) */
+    /*
+    There exists no set of three data points separated by
+    exactly C_PTS and D_PTS consecutive intervening points, respectively,
+    that form an angle such that:
+        angle < (PI−EPSILON)
+    or
+        angle > (PI+EPSILON)
+    The second point of the set of three points is always the vertex of
+    the angle. If either the first point or the last point (or both) coincide
+    with the vertex, the angle is undefined and the LIC is not satisfied by
+    those three points. When NUMPOINTS < 5, the condition is not met.
+    */
+    @Test
+    public void lic9Test_False() {
+        Point p1 = new Point(1, 1);
+        Point p2 = new Point(10, 10);
+        Point p3 = new Point(2, 2);
+        Point p4 = new Point(10, 10);
+        Point p5 = new Point(10, 10);
+        Point p6 = new Point(3, 1);
+        Parameters param = new Parameters();
+        param.C_PTS = 1;
+        param.D_PTS = 2;
+        param.EPSILON = (3.0/4) * Math.PI;
+        CMV cmv = new CMV(6, new Point[] { p1, p2, p3, p4, p5, p6 }, param);
+        
+        assertFalse(cmv.lic9());
+    } 
 
+    /*
+    There exists at least one set of three data points separated by
+    exactly C_PTS and D_PTS consecutive intervening points, respectively,
+    that form an angle such that:
+        angle < (PI−EPSILON)
+    or
+        angle > (PI+EPSILON)
+    The second point of the set of three points is always the vertex of
+    the angle. If either the first point or the last point (or both) coincide
+    with the vertex, the angle is undefined and the LIC is not satisfied by
+    those three points. When NUMPOINTS < 5, the condition is not met.
+    */
+    @Test
+    public void lic9Test_True() {
+        Point p1 = new Point(1, 1);
+        Point p2 = new Point(10, 10);
+        Point p3 = new Point(2, 2);
+        Point p4 = new Point(10, 10);
+        Point p5 = new Point(10, 10);
+        Point p6 = new Point(3, 1);
+        Parameters param = new Parameters();
+        param.C_PTS = 1;
+        param.D_PTS = 2;
+        param.EPSILON = (1.0/4) * Math.PI;
+        CMV cmv = new CMV(6, new Point[] { p1, p2, p3, p4, p5, p6 }, param);
+        
+        assertTrue(cmv.lic9());
+    }
 
+    /*
+    The condition (1 <= C_PTS, 1 <= D_PTS) has to be fullfilled for LIC9
+    */
+    @Test
+    public void lic9Test_IllegalArgumentException1() {
+        Point p1 = new Point(1, 1);
+        Point p2 = new Point(10, 10);
+        Point p3 = new Point(2, 2);
+        Point p4 = new Point(10, 10);
+        Point p5 = new Point(10, 10);
+        Point p6 = new Point(3, 1);
+        Parameters param = new Parameters();
+        param.C_PTS = 0;
+        param.D_PTS = -1;
+        param.EPSILON = (3.0/4) * Math.PI;
+        CMV cmv = new CMV(6, new Point[] { p1, p2, p3, p4, p5, p6 }, param);
+        
+        assertThrows(IllegalArgumentException.class, () -> {cmv.lic9();} );
+    }
 
+    /*
+    The condition (C_PTS + D_PTS <= (NUMPOINTS−3)) has to be fullfilled for LIC9
+    */
+    @Test
+    public void lic9Test_IllegalArgumentException2() {
+        Point p1 = new Point(1, 1);
+        Point p2 = new Point(10, 10);
+        Point p3 = new Point(2, 2);
+        Point p4 = new Point(10, 10);
+        Point p5 = new Point(10, 10);
+        Point p6 = new Point(3, 1);
+        Parameters param = new Parameters();
+        param.C_PTS = 2;
+        param.D_PTS = 2;
+        param.EPSILON = (3.0/4) * Math.PI;
+        CMV cmv = new CMV(6, new Point[] { p1, p2, p3, p4, p5, p6 }, param);
+        
+        assertThrows(IllegalArgumentException.class, () -> {cmv.lic9();} );
+    }
 
+    /* 
+    There exists no set of three data points separated by
+    exactly E_PTS and F_PTS consecutive intervening points, respectively,
+    that are the vertices of a triangle with area greater than AREA1.
+    The condition is not met when NUMPOINTS < 5.
+    */
+    @Test
+    public void lic10Test_False() {
+        Point p1 = new Point(1, 1);
+        Point p2 = new Point(10, 10);
+        Point p3 = new Point(2, 2);
+        Point p4 = new Point(10, 10);
+        Point p5 = new Point(10, 10);
+        Point p6 = new Point(3, 1);
+        Parameters param = new Parameters();
+        param.E_PTS = 1;
+        param.F_PTS = 2;
+        param.AREA1 = 10;
+        CMV cmv = new CMV(6, new Point[] { p1, p2, p3, p4, p5, p6 }, param);
+        
+        assertFalse(cmv.lic10());
+    } 
+
+    /* 
+    There exists at least one set of three data points separated by
+    exactly E_PTS and F_PTS consecutive intervening points, respectively,
+    that are the vertices of a triangle with area greater than AREA1.
+    The condition is not met when NUMPOINTS < 5.
+    */
+    @Test
+    public void lic10Test_True() {
+        Point p1 = new Point(1, 1);
+        Point p2 = new Point(10, 10);
+        Point p3 = new Point(10, 10);
+        Point p4 = new Point(10, 10);
+        Point p5 = new Point(10, 10);
+        Point p6 = new Point(20, 1);
+        Parameters param = new Parameters();
+        param.E_PTS = 1;
+        param.F_PTS = 2;
+        param.AREA1 = 1;
+        CMV cmv = new CMV(6, new Point[] { p1, p2, p3, p4, p5, p6 }, param);
+        
+        assertTrue(cmv.lic10());
+    } 
+
+    /* The condition (1 <= E_PTS, 1 <= F_PTS) has to be fullfilled for LIC10*/
+    @Test
+    public void lic10Test_IllegalArgumentException1() {
+        Point p1 = new Point(1, 1);
+        Point p2 = new Point(10, 10);
+        Point p3 = new Point(2, 2);
+        Point p4 = new Point(10, 10);
+        Point p5 = new Point(10, 10);
+        Point p6 = new Point(3, 1);
+        Parameters param = new Parameters();
+        param.E_PTS = 0;
+        param.F_PTS = -1;
+        param.AREA1 = 10;
+        CMV cmv = new CMV(6, new Point[] { p1, p2, p3, p4, p5, p6 }, param);
+        
+        assertThrows(IllegalArgumentException.class, () -> {cmv.lic10();} );
+    }
+
+    /* The condition (E_PTS + F_PTS <= (NUMPOINTS−3)) has to be fullfilled for LIC10*/
+    @Test
+    public void lic10Test_IllegalArgumentException2() {
+        Point p1 = new Point(1, 1);
+        Point p2 = new Point(10, 10);
+        Point p3 = new Point(2, 2);
+        Point p4 = new Point(10, 10);
+        Point p5 = new Point(10, 10);
+        Point p6 = new Point(3, 1);
+        Parameters param = new Parameters();
+        param.E_PTS = 2;
+        param.F_PTS = 2;
+        param.AREA1 = 10;
+        CMV cmv = new CMV(6, new Point[] { p1, p2, p3, p4, p5, p6 }, param);
+        
+        assertThrows(IllegalArgumentException.class, () -> {cmv.lic10();} );
+    }
 
 
     /*
