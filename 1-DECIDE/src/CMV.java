@@ -526,7 +526,7 @@ public class CMV {
         boolean isInACircleRadius2 = false;
         
         // for loop that gets 3 data points that are seperated by A_PTS and B_PTS
-        for (int i = 0; i < NUMPOINTS - parameters.A_PTS - parameters.B_PTS - 1; i++) {
+        for (int i = 0; i < NUMPOINTS - parameters.A_PTS - parameters.B_PTS - 2; i++) {
 
             Point p1 = points[i];
             Point p2 = points[i + parameters.A_PTS + 1];
