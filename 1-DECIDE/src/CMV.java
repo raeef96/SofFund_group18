@@ -567,7 +567,7 @@ public class CMV {
         boolean isLessThanArea2 = false;
 
         // for loop that gets 3 data points that are seperated by E_PTS and F_PTS
-        for (int i = 0; i < NUMPOINTS - parameters.E_PTS - parameters.F_PTS - 1; i++) {
+        for (int i = 0; i < NUMPOINTS - parameters.E_PTS - parameters.F_PTS - 2; i++) {
 
             Point p1 = points[i];
             Point p2 = points[i + parameters.E_PTS + 1];
