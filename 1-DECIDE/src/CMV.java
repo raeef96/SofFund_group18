@@ -82,7 +82,7 @@ public class CMV {
             Point p3 = points[i + 2];
             
             //if the three points are in a circle with radius RADIUS1 return true
-            if (inACircle(p1, p2, p3, parameters.RADIUS1)) {
+            if (!inACircle(p1, p2, p3, parameters.RADIUS1)) {
                 return true;
             }
         }
