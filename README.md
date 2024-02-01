@@ -18,33 +18,40 @@ Run program:
 
 
 ## Essence
-The team is currently in the "In place" stage. The team is currently close at finishing the first assignment and have agreed upon several practises and is used by all members to complete their respective work. However the team has agreed that there still is room for improvement to the methods and practises used by the team members. The team is planing on having some sort of retrospective meeting after the assignment to gather concrete solutions to issues such as improved methods for reviewing pull requests. Some of the points in the checklist is not really relevant for this exercise, the points in state "Principles Established" that use the word stakeholders is not really relevant for this type och project since there is not really any external party that has an intrest on the performance of this project. We assesed that we are in the state "In place" since the previus stages are completed. We have completed the "Principles Established" state since we have addressed the principles and constraints of way-of-working. The team has addressed the "Foundation
-Established" stage and decided the basic methods for working such as communication methods, meeting times and tools. In addition to this the team has identified that there is a gap in testing knowledge. We also have started to use these practises and tools to start working and made significant progress in the first assignment. This leaves us at the state "In place" where the team is mainly waiting for the oppertunity to gather our feedback and adapt the of the way-of-working for the next assignment. 
+The team is currently in the "In place" stage. The team is currently close to finishing the first assignment and have agreed upon several practices that is used by all members to complete their respective work. However, the team has agreed that there still is a lot of room for improvement to the methods and practices. For example, writing test cases when commiting new code. The team is planning on having a retrospective meeting after the assignment to gather concrete solutions to issues such as improved methods for reviewing pull requests. Some of the points in the checklist are not really relevant for this exercise, the points in state "Principles Established" that use the word stakeholders are not really relevant for this type of project since there is not really any external party that has an interest on the performance of this project. We assesed that we are in the state "In place" since the previus stages are completed. We have completed the "Principles Established" state since we have addressed the principles and constraints of way-of-working. The team has addressed the "Foundation Established" stage and decided the basic methods for working such as communication methods, meeting times and tools. In addition, the team has identified that there is a gap in testing knowledge. We have also started to use these practices and tools to start working and made significant progress in the first assignment. This leaves us at the state "In place" where the team is mainly waiting for the opportunity to gather our feedback and adapt the way-of-working for the next assignment. 
 
 
 ## Contributions
 **Rafael**
 - Lic 7-14
 - CMV helper functions
+- Wrote tests for decide
+- Added documentation for CMV functions
 
 **Gustaf**
-- structure of the input files
-- Implemented Points and skeleton
-- implementet decide
+- Implemented Points, Parameters and skeleton
+- implemented launch & decide
+- Wrote tests for PUM & decide
+- Added documentation for CMV functions
+- Wrote tests for decide & PUM
   
 **André**
-- structure of the input files
-- Implemented Points and skeleton
-- Created testcases for lic conditions
+- Implemented Points, Parameters and skeleton
+- Created the test suite
+- Created testcases for lic conditions 0-10
+- Wrote tests for decide & FUV
 
 **Samuel**
 - Implemented PUM
 - Implemented FUV
-- Created testcases for lic conditions
+- Created testcases for lic conditions 11-14
+- Wrote tests for decide
 
 **Noel**
 - Lic 0-6
 - CMV helper functions
 - Made contributions to the Read me
+- Added documentation for CMV functions
+- Wrote tests for decide
 
 
