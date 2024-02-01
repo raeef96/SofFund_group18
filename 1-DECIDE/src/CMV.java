@@ -330,10 +330,15 @@ public class CMV {
         double l1 = Math.sqrt(Math.pow(p2.getX() - p1.getX(), 2) + Math.pow(p2.getY() - p1.getY(), 2));
         double l2 = Math.sqrt(Math.pow(p3.getX() - p1.getX(), 2) + Math.pow(p3.getY() - p1.getY(), 2));
         double l3 = Math.sqrt(Math.pow(p3.getX() - p2.getX(), 2) + Math.pow(p3.getY() - p2.getY(), 2));
+        
+        // area of the triangle
+        double area = Math.sqrt((l1 + l2 + l3) * (l2 + l3 - l1) * (l3 + l1 - l2) * (l1 + l2 - l3));
 
-        // find max distance and see if it's less than the diameter of the circle
-        double max_dist = Math.max(Math.max(l1, l2), l3);
-        return max_dist <= r * 2;
+        // compute minimum radius to cover the triangle and compare it to r
+        if(area == 0) {
+            return Math.max(Math.max(l1, l2), l3) / 2.0 <= r;
+        }
+        return l1 * l2 * l3 / area <= r;
     }
 
     /*
