@@ -291,13 +291,11 @@ public class CMV {
 
         if (parameters.A_PTS + parameters.B_PTS > (NUMPOINTS - 3))
             throw new IllegalArgumentException("A_PTS + B_PTS must be less than or equal to NUMPOINTS-3"); // throw an exception if A_PTS + B_PTS is greater than NUMPOINTS-3
-        System.out.println("HAllå");
         // this for loop gets 3 data points that are seperated by A_PTS and B_PTS
         for (int i = 0; i < NUMPOINTS - parameters.A_PTS - parameters.B_PTS - 2; i++) {
             Point p1 = points[i];
             Point p2 = points[i + parameters.A_PTS + 1];
             Point p3 = points[i + parameters.A_PTS + parameters.B_PTS + 2];
-            System.out.println("InACircle: " + inACircle(p1, p2, p3, parameters.RADIUS1));
             if (!inACircle(p1, p2, p3, parameters.RADIUS1)) {
                 return true; // return true if the points are not in a circle
             }
