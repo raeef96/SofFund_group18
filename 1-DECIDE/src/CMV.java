@@ -326,22 +326,14 @@ public class CMV {
 
     // helper function that returns true if the points are in a circle with radius r
     public static boolean inACircle(Point p1, Point p2, Point p3, double r) {
-        Point center = calcCenter(p1, p2, p3); // calculate the center of the circle
-        double a = Math.pow((p1.getX() - center.getX()), 2) + Math.pow((p1.getY() - center.getY()), 2); 
-        double b = Math.pow((p2.getX() - center.getX()), 2) + Math.pow((p2.getY() - center.getY()), 2);
-        double c = Math.pow((p3.getX() - center.getX()), 2) + Math.pow((p3.getY() - center.getY()), 2);
+        // computes the distance between each pair of points
+        double l1 = Math.sqrt(Math.pow(p2.getX() - p1.getX(), 2) + Math.pow(p2.getY() - p1.getY(), 2));
+        double l2 = Math.sqrt(Math.pow(p3.getX() - p1.getX(), 2) + Math.pow(p3.getY() - p1.getY(), 2));
+        double l3 = Math.sqrt(Math.pow(p3.getX() - p2.getX(), 2) + Math.pow(p3.getY() - p2.getY(), 2));
 
-        if (a <= r * r && b <= r * r && c <= r * r) {
-            return false; // return true if the points are in a circle with radius r
-        }
-        return true;
-    }
-
-    // helper function that calculates the center of a circle with the three points
-    public static Point calcCenter(Point p1, Point p2, Point p3) {
-        double averageX = (p1.getX() + p2.getX() + p3.getX() )/ 3;
-        double averageY = (p1.getY() + p2.getY() + p3.getY() )/ 3;
-        return new Point(averageX, averageY);
+        // find max distance and see if it's less than the diameter of the circle
+        double max_dist = Math.max(Math.max(l1, l2), l3);
+        return max_dist <= r * 2;
     }
 
     /*
