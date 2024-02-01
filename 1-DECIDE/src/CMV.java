@@ -8,6 +8,7 @@ public class CMV {
     private Point[] points;
     private Parameters parameters;
     private static double PI = Math.PI;
+    private static double double_precision = 0.00001;
     // add a cmv boolean array of length 15
     private boolean[] cmvArr;
     
@@ -333,7 +334,7 @@ public class CMV {
         if(area == 0) {
             return Math.max(Math.max(l1, l2), l3) / 2.0 <= r;
         }
-        return l1 * l2 * l3 / area <= r;
+        return l1 * l2 * l3 / area <= r + double_precision;
     }
 
     /*
