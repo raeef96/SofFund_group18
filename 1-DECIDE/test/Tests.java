@@ -422,6 +422,67 @@ public class Tests {
         assertThrows(IllegalArgumentException.class, () -> {cmv.lic11();} );
     }
 
+    /*
+    There exists no set of two data points, separated by exactly K_PTS
+    consecutive intervening points, which are a distance greater than the length,
+    LENGTH1, apart. In addition, there exists no set of two data points,
+    separated by exactly K_PTS consecutive intervening points, that are a distance
+    less than the length, LENGTH2, apart.
+    */
+    @Test
+    public void lic12Test_False() {
+        Point p1 = new Point(1, 1);
+        Point p2 = new Point(2, 2);
+        Point p3 = new Point(3, 3);
+        Point p4 = new Point(4, 4);
+        Parameters param = new Parameters();
+        param.K_PTS = 1;
+        param.LENGTH1 = 3;
+        param.LENGTH2 = 3;
+        CMV cmv = new CMV(4, new Point[] { p1, p2, p3, p4 }, param);
+
+        assertFalse(cmv.lic12());
+    }
+
+    /*
+    There exists at least one set of two data points, separated by exactly K_PTS
+    consecutive intervening points, which are a distance greater than the length,
+    LENGTH1, apart. In addition, there exists at least one set of two data points
+    (which can be the same or different from the two data points just mentioned),
+    separated by exactly K_PTS consecutive intervening points, that are a distance
+    less than the length, LENGTH2, apart. Both parts must be true for the LIC to
+    be true.
+    */
+    @Test
+    public void lic12Test_True() {
+        Point p1 = new Point(1, 1);
+        Point p2 = new Point(2, 2);
+        Point p3 = new Point(1, 5);
+        Point p4 = new Point(3, 3);
+        Parameters param = new Parameters();
+        param.K_PTS = 1;
+        param.LENGTH1 = 3;
+        param.LENGTH2 = 3;
+        CMV cmv = new CMV(4, new Point[] { p1, p2, p3, p4 }, param);
+
+        assertTrue(cmv.lic12());
+    }
+
+    /* Ensure that 0 <= LENGTH2 */
+    @Test
+    public void lic12Test_IllegalArgumentException() {
+        Point p1 = new Point(1, 1);
+        Point p2 = new Point(2, 2);
+        Point p3 = new Point(1, 5);
+        Point p4 = new Point(3, 3);
+        Parameters param = new Parameters();
+        param.K_PTS = 1;
+        param.LENGTH1 = 3;
+        param.LENGTH2 = -3;
+        CMV cmv = new CMV(4, new Point[] { p1, p2, p3, p4 }, param);
+
+        assertThrows(IllegalArgumentException.class, () -> {cmv.lic12();} );
+    }
 
     /*
     * Test CalculateCMV
