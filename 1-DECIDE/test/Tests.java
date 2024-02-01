@@ -669,6 +669,258 @@ public class Tests {
         assertThrows(IllegalArgumentException.class, () -> {cmv.lic10();} );
     }
 
+    /*
+    There exists no set of two data points,
+    (X[i],Y[i]) and (X[j],Y[j]), separated by exactly
+    G_PTS consecutive intervening points, such that X[j]- X[i] < 0.
+    (where i < j )
+    */
+    @Test
+    public void lic11Test_False() {
+        Point p1 = new Point(1, 3);
+        Point p2 = new Point(1, 5);
+        Point p3 = new Point(1, 4);
+        Point p4 = new Point(1, 1);
+        Parameters param = new Parameters();
+        param.G_PTS = 2;
+        CMV cmv = new CMV(4, new Point[] { p1, p2, p3, p4 }, param);
+
+        assertFalse(cmv.lic11());
+    }
+
+    /*
+    There exists at least one set of two data points,
+    (X[i],Y[i]) and (X[j],Y[j]), separated by exactly
+    G_PTS consecutive intervening points, such that X[j]- X[i] < 0.
+    (where i < j )
+    */
+    @Test
+    public void lic11Test_True() {
+        Point p1 = new Point(3, 3);
+        Point p2 = new Point(1, 5);
+        Point p3 = new Point(6, 4);
+        Point p4 = new Point(1, 1);
+        Parameters param = new Parameters();
+        param.G_PTS = 2;
+        CMV cmv = new CMV(4, new Point[] { p1, p2, p3, p4 }, param);
+
+        assertTrue(cmv.lic11());
+    }
+
+    /* Ensure that 1 <= G_PTS <= NUMPOINTS - 2 */
+    @Test
+    public void lic11Test_IllegalArgumentException() {
+        Point p1 = new Point(3, 3);
+        Point p2 = new Point(1, 5);
+        Point p3 = new Point(6, 4);
+        Point p4 = new Point(1, 1);
+        Parameters param = new Parameters();
+        param.G_PTS = 3;
+        CMV cmv = new CMV(4, new Point[] { p1, p2, p3, p4 }, param);
+
+        assertThrows(IllegalArgumentException.class, () -> {cmv.lic11();} );
+    }
+
+    /*
+    There exists no set of two data points, separated by exactly K_PTS
+    consecutive intervening points, which are a distance greater than the length,
+    LENGTH1, apart. In addition, there exists no set of two data points,
+    separated by exactly K_PTS consecutive intervening points, that are a distance
+    less than the length, LENGTH2, apart.
+    */
+    @Test
+    public void lic12Test_False() {
+        Point p1 = new Point(1, 1);
+        Point p2 = new Point(2, 2);
+        Point p3 = new Point(3, 3);
+        Point p4 = new Point(4, 4);
+        Parameters param = new Parameters();
+        param.K_PTS = 1;
+        param.LENGTH1 = 3;
+        param.LENGTH2 = 3;
+        CMV cmv = new CMV(4, new Point[] { p1, p2, p3, p4 }, param);
+
+        assertFalse(cmv.lic12());
+    }
+
+    /*
+    There exists at least one set of two data points, separated by exactly K_PTS
+    consecutive intervening points, which are a distance greater than the length,
+    LENGTH1, apart. In addition, there exists at least one set of two data points
+    (which can be the same or different from the two data points just mentioned),
+    separated by exactly K_PTS consecutive intervening points, that are a distance
+    less than the length, LENGTH2, apart. Both parts must be true for the LIC to
+    be true.
+    */
+    @Test
+    public void lic12Test_True() {
+        Point p1 = new Point(1, 1);
+        Point p2 = new Point(2, 2);
+        Point p3 = new Point(1, 5);
+        Point p4 = new Point(3, 3);
+        Parameters param = new Parameters();
+        param.K_PTS = 1;
+        param.LENGTH1 = 3;
+        param.LENGTH2 = 3;
+        CMV cmv = new CMV(4, new Point[] { p1, p2, p3, p4 }, param);
+
+        assertTrue(cmv.lic12());
+    }
+
+    /* Ensure that 0 <= LENGTH2 */
+    @Test
+    public void lic12Test_IllegalArgumentException() {
+        Point p1 = new Point(1, 1);
+        Point p2 = new Point(2, 2);
+        Point p3 = new Point(1, 5);
+        Point p4 = new Point(3, 3);
+        Parameters param = new Parameters();
+        param.K_PTS = 1;
+        param.LENGTH1 = 3;
+        param.LENGTH2 = -3;
+        CMV cmv = new CMV(4, new Point[] { p1, p2, p3, p4 }, param);
+
+        assertThrows(IllegalArgumentException.class, () -> {cmv.lic12();} );
+    }
+
+    /*
+    There exists no set of three data points, separated by exactly
+    A_PTS and B_PTS consecutive intervening points, respectively, that
+    cannot be contained within or on a circle of radius RADIUS1. In addition,
+    there exists no set of three data points separated by exactly
+    A_PTS and B_PTS consecutive intervening points, respectively, that can be
+    contained in or on a circle of radius RADIUS2.
+    */
+    @Test
+    public void lic13Test_False() {
+        Point p1 = new Point(1, 1);
+        Point p2 = new Point(2, 2);
+        Point p3 = new Point(3, 3);
+        Point p4 = new Point(4, 4);
+        Point p5 = new Point(5, 5);
+        Point p6 = new Point(6, 6);
+        Parameters param = new Parameters();
+        param.A_PTS = 1;
+        param.B_PTS = 1;
+        param.RADIUS1 = 2;
+        param.RADIUS2 = 2;
+        CMV cmv = new CMV(6, new Point[] { p1, p2, p3, p4, p5, p6 }, param);
+
+        assertFalse(cmv.lic13());
+    }
+
+    /*
+    There exists at least one set of three data points, separated by exactly
+    A_PTS and B_PTS consecutive intervening points, respectively, that
+    cannot be contained within or on a circle of radius RADIUS1. In addition,
+    there exists at least one set of three data points separated by exactly
+    A_PTS and B_PTS consecutive intervening points, respectively, that can be
+    contained in or on a circle of radius RADIUS2.
+    */
+    @Test
+    public void lic13Test_True() {
+        Point p1 = new Point(0, 0);
+        Point p2 = new Point(2, 0);
+        Point p3 = new Point(2, 2);
+        Point p4 = new Point(3, 1);
+        Point p5 = new Point(4, 4);
+        Point p6 = new Point(4, 0);
+        Parameters param = new Parameters();
+        param.A_PTS = 1;
+        param.B_PTS = 1;
+        param.RADIUS1 = 1;
+        param.RADIUS2 = 1;
+        CMV cmv = new CMV(6, new Point[] { p1, p2, p3, p4, p5, p6 }, param);
+
+        assertTrue(cmv.lic13());
+    }
+
+    /* Ensure 0 <= RADIUS2 */
+    @Test
+    public void lic13Test_IllegalArgumentException() {
+        Point p1 = new Point(1, 1);
+        Point p2 = new Point(2, 2);
+        Point p3 = new Point(2, 2);
+        Point p4 = new Point(3, 3);
+        Point p5 = new Point(3, 1);
+        Point p6 = new Point(3, 2);
+        Parameters param = new Parameters();
+        param.A_PTS = 1;
+        param.B_PTS = 1;
+        param.RADIUS1 = 1;
+        param.RADIUS2 = -2;
+        CMV cmv = new CMV(6, new Point[] { p1, p2, p3, p4, p5, p6 }, param);
+
+        assertThrows(IllegalArgumentException.class, () -> {cmv.lic13();} );
+    }
+
+    /*
+    There exists no set of three data points, separated by exactly E_PTS
+    and F_PTS consecutive intervening points, respectively, that are the vertices
+    of a triangle with area greater than AREA1. Inaddition, there exist no three data
+    points separated by exactly E_PTS and F_PTS consecutive intervening points,
+    respectively, that are the vertices of a triangle with area less than AREA2.
+    */
+    @Test
+    public void lic14Test_False() {
+        Point p1 = new Point(0, 0);
+        Point p2 = new Point(2, 2);
+        Point p3 = new Point(5, 10);
+        Point p4 = new Point(3, 3);
+        Point p5 = new Point(10,0);
+        Parameters param = new Parameters();
+        param.E_PTS = 1;
+        param.F_PTS = 1;
+        param.AREA1 = 10;
+        param.AREA2 = 40;
+        CMV cmv = new CMV(5, new Point[] { p1, p2, p3, p4, p5 }, param);
+
+        assertFalse(cmv.lic14());
+    }
+
+    /*
+    There exists at least one set of three data points, separated by exactly E_PTS
+    and F_PTS consecutive intervening points, respectively, that are the vertices
+    of a triangle with area greater than AREA1. Inaddition, there exist three data
+    points (which can be the same or different from the three data points just
+    mentioned) separated by exactly E_PTS and F_PTS consecutive intervening points,
+    respectively, that are the vertices of a triangle with area less than AREA2.
+    */
+    @Test
+    public void lic14Test_True() {
+        Point p1 = new Point(0, 0);
+        Point p2 = new Point(2, 2);
+        Point p3 = new Point(5, 10);
+        Point p4 = new Point(3, 3);
+        Point p5 = new Point(10,0);
+        Parameters param = new Parameters();
+        param.E_PTS = 1;
+        param.F_PTS = 1;
+        param.AREA1 = 10;
+        param.AREA2 = 100;
+        CMV cmv = new CMV(5, new Point[] { p1, p2, p3, p4, p5 }, param);
+
+        assertTrue(cmv.lic14());
+    }
+
+    /* Ensure that 0 <= AREA2 */
+    @Test
+    public void lic14Test_IllegalArgumentException() {
+        Point p1 = new Point(0, 0);
+        Point p2 = new Point(2, 2);
+        Point p3 = new Point(5, 10);
+        Point p4 = new Point(3, 3);
+        Point p5 = new Point(10,0);
+        Parameters param = new Parameters();
+        param.E_PTS = 1;
+        param.F_PTS = 1;
+        param.AREA1 = 10;
+        param.AREA2 = -100;
+        CMV cmv = new CMV(5, new Point[] { p1, p2, p3, p4, p5 }, param);
+
+        assertThrows(IllegalArgumentException.class, () -> {cmv.lic14();} );
+    }
+
 
     /*
     * Test CalculateCMV
