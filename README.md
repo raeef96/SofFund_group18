@@ -13,11 +13,10 @@ This project is based on the development of a function called DECIDE() as part o
 ## Installation & usage
 git clone [https://github.com/raeef96/SofFund_group18.git](https://github.com/raeef96/SofFund_group18.git)
 
-To run the program normally from CLI simply run the commands below in your terminal.
+To run the program normally from CLI, navigate to "1-DECIDE" then run the commands below in your terminal.
 ```bash
-cd SofFund_group18/1-DECIDE
-javac src/Missilesystem.java
-java src/Missilesystem
+javac src/Main/Java/Missilesystem.java
+java src.Main.Java.Missilesystem
 ```
 
 To run the JUnit tests, you first need to install Maven
