@@ -15,8 +15,8 @@ git clone [https://github.com/raeef96/SofFund_group18.git](https://github.com/ra
 
 To run the program normally from CLI, navigate to "1-DECIDE" then run the commands below in your terminal.
 ```bash
-javac src/Main/Java/Missilesystem.java
-java src.Main.Java.Missilesystem
+javac src/Main/Java/MissileSystem.java
+java src.Main.Java.MissileSystem
 ```
 
 To run the JUnit tests, you first need to install Maven
