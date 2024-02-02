@@ -10,7 +10,7 @@ import java.util.Random;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class Tests {
+public class decideTests {
 
      /*
      * Tests that the program decides to launch when all values in PUV is false
