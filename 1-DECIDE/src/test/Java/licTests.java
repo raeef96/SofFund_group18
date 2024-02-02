@@ -1,12 +1,8 @@
-package test;
+package src.test.Java;
 
-import src.CMV;
-import src.PUM;
-import src.FUV;
-import src.MissileSystem;
-import src.Parameters;
-import src.Point;
-import java.util.Random;
+import src.Main.Java.Parameters;
+import src.Main.Java.Point;
+import src.Main.Java.CMV;
 
 import org.junit.Test;
 import static org.junit.Assert.*;

@@ -1,4 +1,4 @@
-package src;
+package src.Main.Java;
 
 
 // create a CMV class
