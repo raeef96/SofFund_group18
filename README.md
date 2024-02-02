@@ -6,8 +6,8 @@ Program for an anti-ballistic missile system that gives True or False signals fo
 This project is based on the development of a function called DECIDE() as part of a hypothetical anti-ballistic missile system. The function generates a True or False signal to determine whether an interceptor should be launched based on input radar tracking information. It evaluates a set of Launch Interceptor Conditions (LICs) using inputs like planar data points, a Logical Connector Matrix (LCM), and a Preliminary Unlocking Vector (PUV), to produce a Final Unlocking Vector (FUV) for the launch decision.
 
 ## Technologies
-- Java
-- Junit
+- Java 17.0.9
+- Junit 4.13.2
 
 ## Installation & usage
 
