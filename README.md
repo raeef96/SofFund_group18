@@ -8,6 +8,7 @@ This project is based on the development of a function called DECIDE() as part o
 ## Technologies
 - Java
 - Junit
+- Maven 3.9.6
 
 ## Installation & usage
 To run the program normally from CLI simply run the commands below in your terminal.
@@ -19,7 +20,10 @@ javac src/Missilesystem.java
 java src/Missilesystem
 ```
 
-To run the JUnit tests, navigate to "1-DECIDE" and run it with the following maven command:
+To run the JUnit tests, you first need to install Maven
+> [Maven](https://maven.apache.org/download.cgi)
+
+Then simply navigate to "1-DECIDE" and run it with the following maven command:
 ```bash
 mvn clean test
 ```
