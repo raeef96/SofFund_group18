@@ -19,9 +19,9 @@ javac src/Missilesystem.java
 java src/Missilesystem
 ```
 
-To run the JUnit tests, navigate to "1-DECIDE" and execute the following commands:
+To run the JUnit tests, navigate to "1-DECIDE" and run it with the following maven command:
 ```bash
-javac -cp "../lib/junit-4.13.2.jar:"  test/*.java
+mvn clean test
 ```
 
 ## Essence
