@@ -11,10 +11,10 @@ This project is based on the development of a function called DECIDE() as part o
 - Maven 3.9.6
 
 ## Installation & usage
-To run the program normally from CLI simply run the commands below in your terminal.
-
-```bash
 git clone [https://github.com/raeef96/SofFund_group18.git](https://github.com/raeef96/SofFund_group18.git)
+
+To run the program normally from CLI simply run the commands below in your terminal.
+```bash
 cd SofFund_group18/1-DECIDE
 javac src/Missilesystem.java
 java src/Missilesystem
