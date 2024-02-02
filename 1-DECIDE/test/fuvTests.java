@@ -1,4 +1,4 @@
-package test.fuv_tests;
+package test;
 import src.CMV;
 import src.PUM;
 import src.FUV;

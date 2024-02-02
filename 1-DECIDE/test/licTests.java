@@ -1,4 +1,4 @@
-package test.lic_tests;
+package test;
 
 import src.CMV;
 import src.PUM;
