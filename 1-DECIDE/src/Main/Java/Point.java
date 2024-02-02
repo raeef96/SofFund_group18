@@ -1,4 +1,5 @@
-package src;
+package src.Main.Java;
+
 
 public class Point{
     private double x;

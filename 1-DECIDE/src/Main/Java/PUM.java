@@ -1,4 +1,4 @@
-package src;
+package src.Main.Java;
 
 public class PUM {
     private boolean[][] pum = new boolean[15][15];

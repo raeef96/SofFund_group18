@@ -1,4 +1,4 @@
-package src;
+package src.Main.Java;
 
 public class Parameters {
     //All variables and their default values

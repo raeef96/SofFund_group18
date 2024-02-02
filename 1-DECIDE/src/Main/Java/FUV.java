@@ -1,4 +1,5 @@
-package src;
+package src.Main.Java;
+
 
 public class FUV {
     private boolean[] fuv = new boolean[15];
