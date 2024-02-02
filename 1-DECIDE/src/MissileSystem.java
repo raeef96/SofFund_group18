@@ -25,16 +25,19 @@ public class MissileSystem{
 
 
     /*
-    * Makes the final decision on whether or not the missile should be launched based on the FUV
+    * Makes the final decision on whether or not the missile should be launched based on the FUV.
+    * The function also prints the decision encoded as "YES"/"NO" to the standard output
     * @param the final unlocking vector 
     * @return whether or not the missile should be launched
     */
     public boolean launch(boolean[] fuv){
         for(boolean parameter : fuv){
             if(!parameter){
+                System.out.println("NO");
                 return false;
             }
         }
+        System.out.println("YES");
         return true;
     }
 
